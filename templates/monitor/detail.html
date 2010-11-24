@@ -1,0 +1,135 @@
+<html>
+<head>
+<meta http-equiv="refresh" content="5" />
+<title>Detail View</title>
+</head>
+<body>
+
+{% if entry %}
+    <center>
+        <table border="1">
+            <tr><td>MyType</td><td>{{ entry.MyType }}</td></tr>
+            <tr><td>TargetType</td><td>{{ entry.TargetType }}</td></tr>
+            <tr><td>GlobalJobId</td><td>{{ entry.GlobalJobId }}</td></tr>
+            <tr><td>ProcId</td><td>{{ entry.ProcId }}</td></tr>
+            <tr><td>AutoClusterId</td><td>{{ entry.AutoClusterId }}</td></tr>
+            <tr><td>AutoClusterAttrs</td><td>{{ entry.AutoClusterAttrs }}</td></tr>
+            <tr><td>WantMatchDiagnostics</td><td>{{ entry.WantMatchDiagnostics }}</td></tr>
+            <tr><td>LastMatchTime</td><td>{{ entry.LastMatchTime }}</td></tr>
+            <tr><td>LastRejMatchTime</td><td>{{ entry.LastRejMatchTime }}</td></tr>
+            <tr><td>NumJobMatches</td><td>{{ entry.NumJobMatches }}</td></tr>
+            <tr><td>OrigMaxHosts</td><td>{{ entry.OrigMaxHosts }}</td></tr>
+            <tr><td>LastJobStatus</td><td>{{ entry.LastJobStatus }}</td></tr>
+            <tr><td>JobStatus</td><td>{{ entry.JobStatus }}</td></tr>
+            <tr><td>EnteredCurrentStatus</td><td>{{ entry.EnteredCurrentStatus }}</td></tr>
+            <tr><td>LastSuspensionTime</td><td>{{ entry.LastSuspensionTime }}</td></tr>
+            <tr><td>CurrentHosts</td><td>{{ entry.CurrentHosts }}</td></tr>
+            <tr><td>ClaimId</td><td>{{ entry.ClaimId }}</td></tr>
+            <tr><td>PublicClaimId</td><td>{{ entry.PublicClaimId }}</td></tr>
+            <tr><td>StartdIpAddr</td><td>{{ entry.StartdIpAddr }}</td></tr>
+            <tr><td>RemoteHost</td><td>{{ entry.RemoteHost }}</td></tr>
+            <tr><td>RemoteSlotID</td><td>{{ entry.RemoteSlotID }}</td></tr>
+            <tr><td>StartdPrincipal</td><td>{{ entry.StartdPrincipal }}</td></tr>
+            <tr><td>ShadowBday</td><td>{{ entry.ShadowBday }}</td></tr>
+            <tr><td>JobStartDate</td><td>{{ entry.JobStartDate }}</td></tr>
+            <tr><td>JobCurrentStartDate</td><td>{{ entry.JobCurrentStartDate }}</td></tr>
+            <tr><td>NumShadowStarts</td><td>{{ entry.NumShadowStarts }}</td></tr>
+            <tr><td>JobRunCount</td><td>{{ entry.JobRunCount }}</td></tr>
+            <tr><td>ClusterId</td><td>{{ entry.ClusterId }}</td></tr>
+            <tr><td>QDate</td><td>{{ entry.QDate }}</td></tr>
+            <tr><td>CompletionDate</td><td>{{ entry.CompletionDate }}</td></tr>
+            <tr><td>Owner</td><td>{{ entry.Owner }}</td></tr>
+            <tr><td>RemoteWallClockTime</td><td>{{ entry.RemoteWallClockTime }}</td></tr>
+            <tr><td>LocalUserCpu</td><td>{{ entry.LocalUserCpu }}</td></tr>
+            <tr><td>LocalSysCpu</td><td>{{ entry.LocalSysCpu }}</td></tr>
+            <tr><td>RemoteUserCpu</td><td>{{ entry.RemoteUserCpu }}</td></tr>
+            <tr><td>RemoteSysCpu</td><td>{{ entry.RemoteSysCpu }}</td></tr>
+            <tr><td>ExitStatus</td><td>{{ entry.ExitStatus }}</td></tr>
+            <tr><td>NumCkpts_RAW</td><td>{{ entry.NumCkpts_RAW }}</td></tr>
+            <tr><td>NumCkpts</td><td>{{ entry.NumCkpts }}</td></tr>
+            <tr><td>NumJobStarts</td><td>{{ entry.NumJobStarts }}</td></tr>
+            <tr><td>NumRestarts</td><td>{{ entry.NumRestarts }}</td></tr>
+            <tr><td>NumSystemHolds</td><td>{{ entry.NumSystemHolds }}</td></tr>
+            <tr><td>CommittedTime</td><td>{{ entry.CommittedTime }}</td></tr>
+            <tr><td>TotalSuspensions</td><td>{{ entry.TotalSuspensions }}</td></tr>
+            <tr><td>CumulativeSuspensionTime</td><td>{{ entry.CumulativeSuspensionTime }}</td></tr>
+            <tr><td>ExitBySignal</td><td>{{ entry.ExitBySignal }}</td></tr>
+            <tr><td>CondorVersion</td><td>{{ entry.CondorVersion }}</td></tr>
+            <tr><td>CondorPlatform</td><td>{{ entry.CondorPlatform }}</td></tr>
+            <tr><td>RootDir</td><td>{{ entry.RootDir }}</td></tr>
+            <tr><td>Iwd</td><td>{{ entry.Iwd }}</td></tr>
+            <tr><td>JobUniverse</td><td>{{ entry.JobUniverse }}</td></tr>
+            <tr><td>Cmd</td><td>{{ entry.Cmd }}</td></tr>
+            <tr><td>MinHosts</td><td>{{ entry.MinHosts }}</td></tr>
+            <tr><td>MaxHosts</td><td>{{ entry.MaxHosts }}</td></tr>
+            <tr><td>WantRemoteSyscalls</td><td>{{ entry.WantRemoteSyscalls }}</td></tr>
+            <tr><td>WantCheckpoint</td><td>{{ entry.WantCheckpoint }}</td></tr>
+            <tr><td>RequestCpus</td><td>{{ entry.RequestCpus }}</td></tr>
+            <tr><td>JobPrio</td><td>{{ entry.JobPrio }}</td></tr>
+            <tr><td>User</td><td>{{ entry.User }}</td></tr>
+            <tr><td>NiceUser</td><td>{{ entry.NiceUser }}</td></tr>
+            <tr><td>JobNotification</td><td>{{ entry.JobNotification }}</td></tr>
+            <tr><td>WantRemoteIO</td><td>{{ entry.WantRemoteIO }}</td></tr>
+            <tr><td>UserLog</td><td>{{ entry.UserLog }}</td></tr>
+            <tr><td>CoreSize</td><td>{{ entry.CoreSize }}</td></tr>
+            <tr><td>KillSig</td><td>{{ entry.KillSig }}</td></tr>
+            <tr><td>Rank</td><td>{{ entry.Rank }}</td></tr>
+            <tr><td>In</td><td>{{ entry.In }}</td></tr>
+            <tr><td>TransferIn</td><td>{{ entry.TransferIn }}</td></tr>
+            <tr><td>Out</td><td>{{ entry.Out }}</td></tr>
+            <tr><td>StreamOut</td><td>{{ entry.StreamOut }}</td></tr>
+            <tr><td>Err</td><td>{{ entry.Err }}</td></tr>
+            <tr><td>StreamErr</td><td>{{ entry.StreamErr }}</td></tr>
+            <tr><td>BufferSize</td><td>{{ entry.BufferSize }}</td></tr>
+            <tr><td>BufferBlockSize</td><td>{{ entry.BufferBlockSize }}</td></tr>
+            <tr><td>ShouldTransferFiles</td><td>{{ entry.ShouldTransferFiles }}</td></tr>
+            <tr><td>WhenToTransferOutput</td><td>{{ entry.WhenToTransferOutput }}</td></tr>
+            <tr><td>TransferFiles</td><td>{{ entry.TransferFiles }}</td></tr>
+            <tr><td>ImageSize_RAW</td><td>{{ entry.ImageSize_RAW }}</td></tr>
+            <tr><td>ImageSize</td><td>{{ entry.ImageSize }}</td></tr>
+            <tr><td>ExecutableSize_RAW</td><td>{{ entry.ExecutableSize_RAW }}</td></tr>
+            <tr><td>ExecutableSize</td><td>{{ entry.ExecutableSize }}</td></tr>
+            <tr><td>DiskUsage_RAW</td><td>{{ entry.DiskUsage_RAW }}</td></tr>
+            <tr><td>DiskUsage</td><td>{{ entry.DiskUsage }}</td></tr>
+            <tr><td>RequestMemory</td><td>{{ entry.RequestMemory }}</td></tr>
+            <tr><td>RequestDisk</td><td>{{ entry.RequestDisk }}</td></tr>
+            <tr><td>Requirements</td><td>{{ entry.Requirements }}</td></tr>
+            <tr><td>FileSystemDomain</td><td>{{ entry.FileSystemDomain }}</td></tr>
+            <tr><td>JobLeaseDuration</td><td>{{ entry.JobLeaseDuration }}</td></tr>
+            <tr><td>PeriodicHold</td><td>{{ entry.PeriodicHold }}</td></tr>
+            <tr><td>PeriodicRelease</td><td>{{ entry.PeriodicRelease }}</td></tr>
+            <tr><td>PeriodicRemove</td><td>{{ entry.PeriodicRemove }}</td></tr>
+            <tr><td>OnExitHold</td><td>{{ entry.OnExitHold }}</td></tr>
+            <tr><td>OnExitRemove</td><td>{{ entry.OnExitRemove }}</td></tr>
+            <tr><td>LeaveJobInQueue</td><td>{{ entry.LeaveJobInQueue }}</td></tr>
+            <tr><td>DAGNodeName</td><td>{{ entry.DAGNodeName }}</td></tr>
+            <tr><td>DAGParentNodeNames</td><td>{{ entry.DAGParentNodeNames }}</td></tr>
+            <tr><td>DAGManJobId</td><td>{{ entry.DAGManJobId }}</td></tr>
+            <tr><td>HookKeyword</td><td>{{ entry.HookKeyword }}</td></tr>
+            <tr><td>Environment</td><td>{{ entry.Environment }}</td></tr>
+            <tr><td>Arguments</td><td>{{ entry.Arguments }}</td></tr>
+            <tr><td>MyAddress</td><td>{{ entry.MyAddress }}</td></tr>
+            <tr><td>LastJobLeaseRenewal</td><td>{{ entry.LastJobLeaseRenewal }}</td></tr>
+            <tr><td>TransferKey</td><td>{{ entry.TransferKey }}</td></tr>
+            <tr><td>TransferSocket</td><td>{{ entry.TransferSocket }}</td></tr>
+            <tr><td>ShadowIpAddr</td><td>{{ entry.ShadowIpAddr }}</td></tr>
+            <tr><td>ShadowVersion</td><td>{{ entry.ShadowVersion }}</td></tr>
+            <tr><td>UidDomain</td><td>{{ entry.UidDomain }}</td></tr>
+            <tr><td>OrigCmd</td><td>{{ entry.OrigCmd }}</td></tr>
+            <tr><td>OrigIwd</td><td>{{ entry.OrigIwd }}</td></tr>
+            <tr><td>StarterIpAddr</td><td>{{ entry.StarterIpAddr }}</td></tr>
+            <tr><td>JobState</td><td>{{ entry.JobState }}</td></tr>
+            <tr><td>NumPids</td><td>{{ entry.NumPids }}</td></tr>
+            <tr><td>JobPid</td><td>{{ entry.JobPid }}</td></tr>
+            <tr><td>JobDuration</td><td>{{ entry.JobDuration }}</td></tr>
+            <tr><td>ExitCode</td><td>{{ entry.ExitCode }}</td></tr>
+            <tr><td>Dataset</td><td>{{ entry.Dataset }}</td></tr>
+            </tr>
+        </table>
+    </center>
+{% else %}
+    <h1>No blackboard entries are available.</h1>
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+Eunomia Web
+
+A django web interface to the Eunomia system as installed on the test lab at 
+STScI as of Nov. 2010. This should be taken with more than a grain of salt and 
+used only as a deployment example. Nothing more. You have been warned. 
+Seriously.

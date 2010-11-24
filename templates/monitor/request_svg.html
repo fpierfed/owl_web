@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Request View</title>
+		<meta http-equiv="refresh" content="2" />
+	</head>
+	<body>
+	    <center>
+            <h1>Request #{{ requestId }}</h1>
+            <h2>Dataset: {{ dataset }}</h2>
+            <h2>User: {{ user }}</h2>
+            
+            {% autoescape off %} 
+                {{ svg }}
+            {% endautoescape %}
+		</center>
+	</body>
+</html>
+

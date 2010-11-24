@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="refresh" content="5" />
+<title>Process View</title>
+</head>
+<body>
+
+{% if entries %}
+    <center>
+        <table border="1">
+            <tr>
+                <td><b>Request #</b></td>
+                <td><b>Dataset</b></td>
+                <td><b>User</b></td>
+                <td><b>Start Time</b></td>
+                <td><b>Process Name</b></td>
+                <td><b>Parent Names</b></td>
+                <td><b>State</b></td>
+                <td><b>Duration (s)</b></td>
+                <td><b>Exit Code</b></td>
+                <td><b>Detail</b></td>
+            </tr>
+        
+        {% for e in entries %}
+            <tr>
+                <td>
+                    <a href="/monitor/request/{{ e.DAGManJobId }}/">
+                        {{ e.DAGManJobId }}
+                    </a>
+                </td>
+                <td>
+                    <a href="/monitor/dataset/{{ e.Dataset }}">
+                        {{ e.Dataset }}
+                    </a>
+                </td>
+                <td>
+                    <a href="/monitor/user/{{ e.Owner }}/">{{ e.Owner }}</a>
+                </td>
+                <td>{{ e.JobStartDate }}</td>
+                <td>{{ e.DAGNodeName }}</td>
+                <td>{{ e.DAGParentNodeNames }}</td>
+                <td>{{ e.JobState }}</td>
+                <td>{{ e.JobDuration }}</td>
+                {% if e.ExitCode != 0 %}
+                    {% if e.ExitCode != None %}
+                        <td bgcolor="#FF0000">{{ e.ExitCode }}</td>
+                    {% else %}
+                        <td>N/A</td>
+                    {% endif %}
+                {% else %}
+                    <td>{{ e.ExitCode }}</td>
+                {% endif %}
+                <td>
+                    <a href="/monitor/entry/{{ e.GlobalJobId|urlencode }}/">
+                        More Info
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </center>
+{% else %}
+    <h1>No blackboard entries are available.</h1>
+{% endif %}
+
+</body>
+</html>
