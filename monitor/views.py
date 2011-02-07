@@ -157,7 +157,24 @@ def request_index(request, request_id):
             
             parentNames = stage.DAGParentNodeNames.split(',')
             for parentName in parentNames:
-                if(nodes.has_key(parentName)):
+                if(not nodes.has_key(parentName)):
+                    continue
+                
+                # We have three cases: 
+                #   1. node.Instances == parent.Instances: 1 to 1
+                #   2. node.Instances > parent.Instances:  scatter
+                #   3. node.Instances < parent.Instances:  gather
+                # We can treat 2. and 3. the same way. !. is different.
+                if(len(nodes[stage.DAGNodeName]) == len(nodes[parentName])):
+                    # Case 1.
+# 
+# FIXME: here we assume that ProcIds are the same for parent and child.
+# 
+                    pClusterId = int(nodes[parentName][0].split('.')[0])
+                    pId = '%d.%d' % (pClusterId, stage.ProcId)
+                    dot.add_edge(pydot.Edge(pId, nodeId))
+                else:
+                    # Cases 2. and 3.
                     for parentId in nodes[parentName]:
                         dot.add_edge(pydot.Edge(parentId, nodeId))
     
