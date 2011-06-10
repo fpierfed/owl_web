@@ -30,7 +30,7 @@ import os
 import sys
 
 # Add eunomia_web and its parent dir to the PYTHONPATH.
-paths = ['/hstdev/project', '/hstdev/project/eunomia_web']
+paths = ['/jwst', '/jwst/eunomia_web']
 for p in paths:
     if(p not in sys.path):
         sys.path.append(p)
@@ -39,3 +39,4 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'eunomia_web.settings'
 
 import django.core.handlers.wsgi
 application = django.core.handlers.wsgi.WSGIHandler()
+

@@ -40,12 +40,14 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'foo_web',                      # Or path to database file if using sqlite3.
-        'USER': 'www',                      # Not used with sqlite3.
-        'PASSWORD': 'zxcvbnm',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'sql_server.pyodbc', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'workflowDB',                      # Or path to database file if using sqlite3.
+        'USER': 'workflow',                      # Not used with sqlite3.
+        'PASSWORD': PASSWORD,                  # Not used with sqlite3.
+        'OPTIONS': {
+            'driver': 'SQL Server',
+            'dsn': 'jwdmsdevdbvm1'
+        }
     }
 }
 
@@ -88,6 +90,7 @@ STATICFILES_ROOT = ''
 # URL that handles the static files served from STATICFILES_ROOT.
 # Example: "http://static.lawrence.com/", "http://example.com/static/"
 STATICFILES_URL = '/static/'
+STATIC_URL = STATICFILES_URL
 
 # URL prefix for admin media -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
@@ -130,7 +133,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     
-    '/hstdev/project/eunomia_web/templates',
+    '/jwst/eunomia_web/templates',
 )
 
 INSTALLED_APPS = (
@@ -146,6 +149,8 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     
     'monitor',
+    'main',
+    'control',
 )
 
 # A sample logging configuration. The only tangible logging
