@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Dataset View for {{ instrument.name }}</title>
+</head>
+<body>
+
+<center>
+    <h1>Dataset View for {{ instrument.name }}</h1>
+    
+    <table border="0">
+        {% for dataset in instrument.datasets %}
+        <tr>
+            <td colspan="2">
+                <b>{{ dataset.name }}</b> exposure list
+            </td>
+        </tr>
+        {% for exposure in dataset.exposures %}
+        <tr>
+            <td>
+                <a href="{{ dataset.name }}/{{ exposure }}/">Process</a>
+            </td>
+            <td>
+                {{ exposure }}
+            </td>
+    {% endfor %}
+    {% endfor %}
+    </table>
+</center>
+</body>
+</html>

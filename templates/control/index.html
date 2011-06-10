@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Control View</title>
+</head>
+<body>
+
+{% if instruments %}
+    <center>
+        <table border="1">
+            <tr>
+                <td><b>Intrument/Mode</b></td>
+                <td><b># of Datasets</b></td>
+            </tr>
+        
+        {% for instrument in instruments %}
+            <tr>
+                <td>
+                    <a href="{{ instrument.name }}/">
+                        {{ instrument.name }}
+                    </a>
+                </td>
+                <td>
+                    {{ instrument.datasets|length }}
+                </td>
+        {% endfor %}
+        </table>
+    </center>
+{% else %}
+    <h1>No intrument/mode defined.</h1>
+{% endif %}
+
+</body>
+</html>

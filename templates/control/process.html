@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>
+    Process View for {{ instrument.name }} {{ dataset.name }} {{ exposure }}
+</title>
+</head>
+<body>
+
+<center>
+    <h1>
+        Process View for {{ instrument.name }} {{ dataset.name }} {{ exposure }}
+    </h1>
+    
+    <table border="0">
+        <tr>
+            <td>
+                Executed <b>{{ command }}</b>
+                <br />
+                Ecit code: {{ exit_code }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br />
+                <br />
+                <br />
+                <center>
+                    Switch to the <a href="/monitor/">monitor view</a>
+                </center>
+            </td>
+        </tr>
+    </table>
+</center>
+</body>
+</html>
