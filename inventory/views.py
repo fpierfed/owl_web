@@ -28,6 +28,8 @@
 # DAMAGE.
 import os
 import subprocess
+import tempfile
+import time
 
 from django.template import Context, loader
 from django.http import HttpResponse
@@ -41,7 +43,8 @@ from eunomia import job
 # Constants
 # TODO: We should be using condor_quill or similar system.
 EXE = '/usr/bin/condor_status'
-
+# Timeout in seconds for the call to EXE.
+TIMEOUT = 5.
 
 
 
@@ -65,6 +68,44 @@ def parse(stdout):
     return(machines)
 
 
+def _run_and_get_stdout(args, timeout):
+    """
+    Simple wrapper around subprocess.Popen() with support for timeouts. Return
+    the path of the file with the STDOUT content. In case the process had to be 
+    killed or returned an error, the file is removed and None returned.
+    """
+    # Open the file for writing.
+    (fid, file_name) = tempfile.mkstemp()
+    os.close(fid)
+    f = open(file_name, 'w')
+    
+    # Execute the external process and redirect STDOUT to f.
+    proc = subprocess.Popen(args, 
+                            stdout=f, 
+                            shell=False)
+    
+    # Since proc.wait() can deadlock, it is prudent to jut poll...
+    start_time = time.time()
+    while(time.time() - start_time < timeout):
+        exit_code = proc.poll()
+        if(exit_code is None):
+            # The process is still running.
+            time.sleep(.1)
+            continue
+        
+        # If we are here, the process finished.
+        if(exit_code != 0):
+            f.close()
+            return(None)
+        
+        f.close()
+        return(file_name)
+    # If the process is still tunning at this point, kill it.
+    proc.kill()
+    f.close()
+    return(None)
+
+
 
 
 
@@ -72,21 +113,22 @@ def index(request):
     """
     Main entry point for the inventory web app.
     """
+    machines = ({'Name': 
+                 'Error communicating with condor please try again later.'}, )
+    
     # Load the template.
     t = loader.get_template('inventory/index.html')
     
     # Call condor_status and get a full list of machines and their ClassAds.
-    args = (EXE, '-long')
-    proc = subprocess.Popen(args, 
-                            stdout=subprocess.PIPE, 
-                            stderr=subprocess.PIPE,
-                            shell=False)
-    err = proc.wait()
+    file_name = _run_and_get_stdout((EXE, '-long'), TIMEOUT)
     
-    # Now parse the output of the command into N machine infos.
-    machines = parse(proc.stdout)
-    proc.stdout.close()
-    proc.stderr.close()
+    if(file_name is not None):
+        f = open(file_name, 'r')
+        machines = parse(f)
+        f.close()
+    
+    # Cleanup.
+    os.remove(file_name)
     
     # Render the template and exit.
     c = Context({'machines': machines})
@@ -97,21 +139,21 @@ def detail(request, machine_name):
     """
     Display the machine details.
     """
+    machines = ({'Name': 
+                 'Error communicating with condor please try again later.'}, )
+    
     # Load the template.
     t = loader.get_template('inventory/detail.html')
     
     # Call condor_status and get a full list of machines and their ClassAds.
-    args = (EXE, '-long', machine_name)
-    proc = subprocess.Popen(args, 
-                            stdout=subprocess.PIPE, 
-                            stderr=subprocess.PIPE,
-                            shell=False)
-    err = proc.wait()
+    file_name = _run_and_get_stdout((EXE, '-long', machine_name), TIMEOUT)
+    if(file_name is not None):
+        f = open(file_name, 'r')
+        machines = parse(f)
+        f.close()
     
-    # Now parse the output of the command into N machine infos.
-    machines = parse(proc.stdout)
-    proc.stdout.close()
-    proc.stderr.close()
+    # Cleanup.
+    os.remove(file_name)
     
     # Render the template and exit.
     c = Context({'machine': machines[0]})
