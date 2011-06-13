@@ -14,9 +14,10 @@
     <table border="0">
         <tr>
             <td>
-                Executed <b>{{ command }}</b>
+                Submitted job by executing <br />
+                <b>{{ command }}</b>
                 <br />
-                Ecit code: {{ exit_code }}
+                Exit code: {{ exit_code }}
             </td>
         </tr>
         <tr>
@@ -25,7 +26,9 @@
                 <br />
                 <br />
                 <center>
-                    Switch to the <a href="/monitor/">monitor view</a>
+                    Now switch to the <a href="/monitor/">monitor view</a> to 
+                    check on your newly submitted job (it might take a moment 
+                    for the monitor interface to pick it up).
                 </center>
             </td>
         </tr>

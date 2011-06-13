@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta http-equiv="refresh" content="30" />
+<title>Inventory View</title>
+</head>
+<body>
+
+<center>
+    <h1>Inventory View</h1>
+    
+    <table border="1">
+        <tr>
+            <td><b>Name</b></td>
+            <td><b>OpSys</b></td>
+            <td><b>Arch</b></td>
+            <td><b>Cpus</b></td>
+            <td><b>Memory (MB)</b></td>
+            <td><b>LoadAvg</b></td>
+            <td><b>Disk (KB)</b></td>
+            <td><b>State</b></td>
+            <td><b>Activity</b></td>
+        </tr>
+        
+        {% for machine in machines %}
+        <tr>
+            <td>{{ machine.Name }}</td>
+            <td>{{ machine.OpSys }}</td>
+            <td>{{ machine.Arch }}</td>
+            <td>{{ machine.Cpus }}</td>
+            <td>{{ machine.Memory }}</td>
+            <td>{{ machine.LoadAvg }}</td>
+            <td>{{ machine.Disk }}</td>
+            <td>{{ machine.State }}</td>
+            <td>{{ machine.Activity }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</center>
+</body>
+</html>

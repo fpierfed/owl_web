@@ -52,8 +52,11 @@ urlpatterns = patterns('',
     (r'^monitor/entry/(?P<entry_id>\S+)/$', 'monitor.views.entry_index'),
     (r'^monitor/request/(?P<request_id>\d+)/$', 'monitor.views.request_index'),
     
-    # Conreol web app.
+    # Control web app.
     (r'^control/$', 'control.views.index'),
     (r'^control/(?P<instrument>[a-zA-Z0-9]+)/(?P<mode>[a-zA-Z0-9]+)/(?P<dataset>[a-zA-Z0-9_-]+)/(?P<exposure>[a-zA-Z0-9-]+)/$', 'control.views.process_index'),
     (r'^control/(?P<instrument>[a-zA-Z0-9]+)/(?P<mode>[a-zA-Z0-9]+)/$', 'control.views.dataset_index'),
+    
+    # Inventory web app.
+    (r'^inventory/$', 'inventory.views.index'),
 )
