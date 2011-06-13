@@ -70,10 +70,8 @@ def parse(stdout):
 
 def index(request):
     """
-    Main entry point for the control web app.
+    Main entry point for the inventory web app.
     """
-    machines = []
-    
     # Load the template.
     t = loader.get_template('inventory/index.html')
     
@@ -93,6 +91,62 @@ def index(request):
     # Render the template and exit.
     c = Context({'machines': machines})
     return(HttpResponse(t.render(c)))
+
+
+def detail(request, machine_name):
+    """
+    Display the machine details.
+    """
+    # Load the template.
+    t = loader.get_template('inventory/detail.html')
+    
+    # Call condor_status and get a full list of machines and their ClassAds.
+    args = (EXE, '-long', machine_name)
+    proc = subprocess.Popen(args, 
+                            stdout=subprocess.PIPE, 
+                            stderr=subprocess.PIPE,
+                            shell=False)
+    err = proc.wait()
+    
+    # Now parse the output of the command into N machine infos.
+    machines = parse(proc.stdout)
+    proc.stdout.close()
+    proc.stderr.close()
+    
+    # Render the template and exit.
+    c = Context({'machine': machines[0]})
+    return(HttpResponse(t.render(c)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

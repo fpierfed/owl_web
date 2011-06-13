@@ -59,4 +59,5 @@ urlpatterns = patterns('',
     
     # Inventory web app.
     (r'^inventory/$', 'inventory.views.index'),
+    (r'^inventory/(?P<machine_name>[a-zA-Z0-9@-_\.]+)/$', 'inventory.views.detail'),
 )

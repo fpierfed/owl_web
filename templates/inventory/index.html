@@ -23,7 +23,7 @@
         
         {% for machine in machines %}
         <tr>
-            <td>{{ machine.Name }}</td>
+            <td><a href="{{ machine.Name }}">{{ machine.Name }}</a></td>
             <td>{{ machine.OpSys }}</td>
             <td>{{ machine.Arch }}</td>
             <td>{{ machine.Cpus }}</td>

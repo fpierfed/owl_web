@@ -1,0 +1,105 @@
+<html>
+<head>
+<meta http-equiv="refresh" content="30" />
+<title>Detail View for {{ machine.Name }}</title>
+</head>
+<body>
+
+<center>
+    <h1>Detail View for {{ machine.Name }}</h1>
+    <table border="1">
+        <tr><td><b>MyType</b></td><td>{{ machine.MyType }}</td></tr>
+        <tr><td><b>TargetType</b></td><td>{{ machine.TargetType }}</td></tr>
+        <tr><td><b>Name</b></td><td>{{ machine.Name }}</td></tr>
+        <tr><td><b>Rank</b></td><td>{{ machine.Rank }}</td></tr>
+        <tr><td><b>CpuBusy</b></td><td>{{ machine.CpuBusy }}</td></tr>
+        <tr><td><b>SlotWeight</b></td><td>{{ machine.SlotWeight }}</td></tr>
+        <tr><td><b>MyCurrentTime</b></td><td>{{ machine.MyCurrentTime }}</td></tr>
+        <tr><td><b>Machine</b></td><td>{{ machine.Machine }}</td></tr>
+        <tr><td><b>MyAddress</b></td><td>{{ machine.MyAddress }}</td></tr>
+        <tr><td><b>COLLECTOR_HOST_STRING</b></td><td>{{ machine.COLLECTOR_HOST_STRING }}</td></tr>
+        <tr><td><b>CondorVersion</b></td><td>{{ machine.CondorVersion }}</td></tr>
+        <tr><td><b>CondorPlatform</b></td><td>{{ machine.CondorPlatform }}</td></tr>
+        <tr><td><b>SlotID</b></td><td>{{ machine.SlotID }}</td></tr>
+        <tr><td><b>VirtualMachineID</b></td><td>{{ machine.VirtualMachineID }}</td></tr>
+        <tr><td><b>VirtualMemory</b></td><td>{{ machine.VirtualMemory }}</td></tr>
+        <tr><td><b>TotalDisk</b></td><td>{{ machine.TotalDisk }}</td></tr>
+        <tr><td><b>Disk</b></td><td>{{ machine.Disk }}</td></tr>
+        <tr><td><b>CondorLoadAvg</b></td><td>{{ machine.CondorLoadAvg }}</td></tr>
+        <tr><td><b>LoadAvg</b></td><td>{{ machine.LoadAvg }}</td></tr>
+        <tr><td><b>KeyboardIdle</b></td><td>{{ machine.KeyboardIdle }}</td></tr>
+        <tr><td><b>ConsoleIdle</b></td><td>{{ machine.ConsoleIdle }}</td></tr>
+        <tr><td><b>Memory</b></td><td>{{ machine.Memory }}</td></tr>
+        <tr><td><b>Cpus</b></td><td>{{ machine.Cpus }}</td></tr>
+        <tr><td><b>StartdIpAddr</b></td><td>{{ machine.StartdIpAddr }}</td></tr>
+        <tr><td><b>Arch</b></td><td>{{ machine.Arch }}</td></tr>
+        <tr><td><b>OpSys</b></td><td>{{ machine.OpSys }}</td></tr>
+        <tr><td><b>UidDomain</b></td><td>{{ machine.UidDomain }}</td></tr>
+        <tr><td><b>FileSystemDomain</b></td><td>{{ machine.FileSystemDomain }}</td></tr>
+        <tr><td><b>HasIOProxy</b></td><td>{{ machine.HasIOProxy }}</td></tr>
+        <tr><td><b>CheckpointPlatform</b></td><td>{{ machine.CheckpointPlatform }}</td></tr>
+        <tr><td><b>TotalVirtualMemory</b></td><td>{{ machine.TotalVirtualMemory }}</td></tr>
+        <tr><td><b>TotalCpus</b></td><td>{{ machine.TotalCpus }}</td></tr>
+        <tr><td><b>TotalMemory</b></td><td>{{ machine.TotalMemory }}</td></tr>
+        <tr><td><b>KFlops</b></td><td>{{ machine.KFlops }}</td></tr>
+        <tr><td><b>Mips</b></td><td>{{ machine.Mips }}</td></tr>
+        <tr><td><b>LastBenchmark</b></td><td>{{ machine.LastBenchmark }}</td></tr>
+        <tr><td><b>TotalLoadAvg</b></td><td>{{ machine.TotalLoadAvg }}</td></tr>
+        <tr><td><b>TotalCondorLoadAvg</b></td><td>{{ machine.TotalCondorLoadAvg }}</td></tr>
+        <tr><td><b>ClockMin</b></td><td>{{ machine.ClockMin }}</td></tr>
+        <tr><td><b>ClockDay</b></td><td>{{ machine.ClockDay }}</td></tr>
+        <tr><td><b>TotalSlots</b></td><td>{{ machine.TotalSlots }}</td></tr>
+        <tr><td><b>TotalVirtualMachines</b></td><td>{{ machine.TotalVirtualMachines }}</td></tr>
+        <tr><td><b>HasFileTransfer</b></td><td>{{ machine.HasFileTransfer }}</td></tr>
+        <tr><td><b>HasPerFileEncryption</b></td><td>{{ machine.HasPerFileEncryption }}</td></tr>
+        <tr><td><b>HasReconnect</b></td><td>{{ machine.HasReconnect }}</td></tr>
+        <tr><td><b>HasMPI</b></td><td>{{ machine.HasMPI }}</td></tr>
+        <tr><td><b>HasTDP</b></td><td>{{ machine.HasTDP }}</td></tr>
+        <tr><td><b>HasJobDeferral</b></td><td>{{ machine.HasJobDeferral }}</td></tr>
+        <tr><td><b>HasJICLocalConfig</b></td><td>{{ machine.HasJICLocalConfig }}</td></tr>
+        <tr><td><b>HasJICLocalStdin</b></td><td>{{ machine.HasJICLocalStdin }}</td></tr>
+        <tr><td><b>JavaVendor</b></td><td>{{ machine.JavaVendor }}</td></tr>
+        <tr><td><b>JavaVersion</b></td><td>{{ machine.JavaVersion }}</td></tr>
+        <tr><td><b>JavaSpecificationVersion</b></td><td>{{ machine.JavaSpecificationVersion }}</td></tr>
+        <tr><td><b>JavaMFlops</b></td><td>{{ machine.JavaMFlops }}</td></tr>
+        <tr><td><b>HasJava</b></td><td>{{ machine.HasJava }}</td></tr>
+        <tr><td><b>StarterAbilityList</b></td><td>{{ machine.StarterAbilityList }}</td></tr>
+        <tr><td><b>HasVM</b></td><td>{{ machine.HasVM }}</td></tr>
+        <tr><td><b>CpuBusyTime</b></td><td>{{ machine.CpuBusyTime }}</td></tr>
+        <tr><td><b>CpuIsBusy</b></td><td>{{ machine.CpuIsBusy }}</td></tr>
+        <tr><td><b>TimeToLive</b></td><td>{{ machine.TimeToLive }}</td></tr>
+        <tr><td><b>State</b></td><td>{{ machine.State }}</td></tr>
+        <tr><td><b>EnteredCurrentState</b></td><td>{{ machine.EnteredCurrentState }}</td></tr>
+        <tr><td><b>Activity</b></td><td>{{ machine.Activity }}</td></tr>
+        <tr><td><b>EnteredCurrentActivity</b></td><td>{{ machine.EnteredCurrentActivity }}</td></tr>
+        <tr><td><b>TotalTimeOwnerIdle</b></td><td>{{ machine.TotalTimeOwnerIdle }}</td></tr>
+        <tr><td><b>TotalTimeUnclaimedIdle</b></td><td>{{ machine.TotalTimeUnclaimedIdle }}</td></tr>
+        <tr><td><b>TotalTimeUnclaimedBenchmarking</b></td><td>{{ machine.TotalTimeUnclaimedBenchmarking }}</td></tr>
+        <tr><td><b>TotalTimeClaimedIdle</b></td><td>{{ machine.TotalTimeClaimedIdle }}</td></tr>
+        <tr><td><b>TotalTimeClaimedBusy</b></td><td>{{ machine.TotalTimeClaimedBusy }}</td></tr>
+        <tr><td><b>Start</b></td><td>{{ machine.Start }}</td></tr>
+        <tr><td><b>Requirements</b></td><td>{{ machine.Requirements }}</td></tr>
+        <tr><td><b>IsValidCheckpointPlatform</b></td><td>{{ machine.IsValidCheckpointPlatform }}</td></tr>
+        <tr><td><b>MaxJobRetirementTime</b></td><td>{{ machine.MaxJobRetirementTime }}</td></tr>
+        <tr><td><b>LastFetchWorkSpawned</b></td><td>{{ machine.LastFetchWorkSpawned }}</td></tr>
+        <tr><td><b>LastFetchWorkCompleted</b></td><td>{{ machine.LastFetchWorkCompleted }}</td></tr>
+        <tr><td><b>NextFetchWorkDelay</b></td><td>{{ machine.NextFetchWorkDelay }}</td></tr>
+        <tr><td><b>CurrentRank</b></td><td>{{ machine.CurrentRank }}</td></tr>
+        <tr><td><b>MonitorSelfTime</b></td><td>{{ machine.MonitorSelfTime }}</td></tr>
+        <tr><td><b>MonitorSelfCPUUsage</b></td><td>{{ machine.MonitorSelfCPUUsage }}</td></tr>
+        <tr><td><b>MonitorSelfImageSize</b></td><td>{{ machine.MonitorSelfImageSize }}</td></tr>
+        <tr><td><b>MonitorSelfResidentSetSize</b></td><td>{{ machine.MonitorSelfResidentSetSize }}</td></tr>
+        <tr><td><b>MonitorSelfAge</b></td><td>{{ machine.MonitorSelfAge }}</td></tr>
+        <tr><td><b>MonitorSelfRegisteredSocketCount</b></td><td>{{ machine.MonitorSelfRegisteredSocketCount }}</td></tr>
+        <tr><td><b>MonitorSelfSecuritySessions</b></td><td>{{ machine.MonitorSelfSecuritySessions }}</td></tr>
+        <tr><td><b>DaemonStartTime</b></td><td>{{ machine.DaemonStartTime }}</td></tr>
+        <tr><td><b>UpdateSequenceNumber</b></td><td>{{ machine.UpdateSequenceNumber }}</td></tr>
+        <tr><td><b>LastHeardFrom</b></td><td>{{ machine.LastHeardFrom }}</td></tr>
+        <tr><td><b>UpdatesTotal</b></td><td>{{ machine.UpdatesTotal }}</td></tr>
+        <tr><td><b>UpdatesSequenced</b></td><td>{{ machine.UpdatesSequenced }}</td></tr>
+        <tr><td><b>UpdatesLost</b></td><td>{{ machine.UpdatesLost }}</td></tr>
+        <tr><td><b>UpdatesHistory</b></td><td>{{ machine.UpdatesHistory }}</td></tr>
+    </table>
+</center>
+</body>
+</html>
