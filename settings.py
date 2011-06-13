@@ -26,6 +26,7 @@
 # TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
 # USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
 # DAMAGE.
+import os.path
 
 # Django settings for eunomia_web project.
 
@@ -38,12 +39,14 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+pwd_file = os.path.join(os.path.dirname(__file__), 'database.pwd')
+PASSWD = open(pwd_file).readline().strip()
 DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'workflowDB',                      # Or path to database file if using sqlite3.
-        'USER': 'workflow',                      # Not used with sqlite3.
-        'PASSWORD': PASSWORD,                  # Not used with sqlite3.
+        'NAME': 'workflowDB',          # Or path to database file if using sqlite3.
+        'USER': 'workflow',            # Not used with sqlite3.
+        'PASSWORD': PASSWD,            # Not used with sqlite3.
         'OPTIONS': {
             'driver': 'SQL Server',
             'dsn': 'jwdmsdevdbvm1'
@@ -151,6 +154,7 @@ INSTALLED_APPS = (
     'monitor',
     'main',
     'control',
+    'inventory',
 )
 
 # A sample logging configuration. The only tangible logging
