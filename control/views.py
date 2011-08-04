@@ -48,6 +48,8 @@ dataset001 = {'name': 'dataset_001',
 dataset002 = {'name': 'dataset_002', 
               'exposures': ('raw-000001', 'raw-000002')}
 INSTRUMENTS = ({'name': 'instrument1/modeA', 
+                'datasets': (dataset001, dataset002)}, 
+               {'name': 'instrument1/modeD', 
                 'datasets': (dataset001, dataset002)}, )
 
 
@@ -88,12 +90,18 @@ def dataset_index(request, instrument, mode):
     return(HttpResponse(t.render(c)))
 
 
-def process_index(request, instrument, mode, dataset, exposure):
+def process_index(request, instrument, mode, dataset, exposure, 
+                  repo_root=REPO_ROOT, exe=EXE):
     """
     Display available dataset exposures for the given instrument and mode.
     """
     # Load the template.
     t = loader.get_template('control/process.html')
+    
+    # Special handling for modeD which uses iRODS. This is a hack :-(
+    if(str(mode) == 'modeD'):
+        repo_root = repo_root.replace('/jwdmsdevvm1/data1/', '', 1)
+        exe = '/jwst/bin/process_idataset.py'
     
     name = str(instrument) + '/' + str(mode)
     
@@ -106,10 +114,10 @@ def process_index(request, instrument, mode, dataset, exposure):
             break
     
     # Get the repository path.
-    repo_path = os.path.join(REPO_ROOT, dataset)
+    repo_path = os.path.join(repo_root, dataset)
     
     # Compose the command.
-    args = (EXE, '-r', repo_path, '-i', instrument, '-m', mode, exposure)
+    args = (exe, '-r', repo_path, '-i', instrument, '-m', mode, exposure)
     proc = subprocess.Popen(args, 
                             stdout=subprocess.PIPE, 
                             stderr=subprocess.PIPE,
