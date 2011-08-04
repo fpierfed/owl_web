@@ -19,6 +19,7 @@
                 <td><b>Duration (s)</b></td>
                 <td><b>Exit Code</b></td>
                 <td><b>Detail</b></td>
+                <td><b>Hold/Release</b></td>
             </tr>
         
         {% for e in entries %}
@@ -36,11 +37,26 @@
                 <td>
                     <a href="/monitor/user/{{ e.Owner }}/">{{ e.Owner }}</a>
                 </td>
-                <td>{{ e.JobStartDate }}</td>
-                <td>{{ e.DAGNodeName }}</td>
-                <td>{{ e.DAGParentNodeNames }}</td>
-                <td>{{ e.JobState }}</td>
-                <td>{{ e.JobDuration }}</td>
+                <td>
+                    {{ e.JobStartDate }}
+                </td>
+                <td>
+                    {{ e.DAGNodeName }}
+                </td>
+                <td>
+                    {{ e.DAGParentNodeNames }}
+                </td>
+                <td>
+                    <!-- Remember that a condor job put on hold has a ExitCode = None and JobState = Exited -->
+                    {% if e.ExitCode == None and e.JobState == "Exited" %}
+                        On Hold
+                    {% else %}
+                        {{ e.JobState }}
+                    {% endif %}
+                </td>
+                <td>
+                    {{ e.JobDuration }}
+                </td>
                 {% if e.ExitCode != 0 %}
                     {% if e.ExitCode != None %}
                         <td bgcolor="#FF0000">{{ e.ExitCode }}</td>
@@ -54,6 +70,14 @@
                     <a href="/monitor/entry/{{ e.GlobalJobId|urlencode }}/">
                         More Info
                     </a>
+                </td>
+                <td>
+                    {% if e.ExitCode == None and e.JobState == "Exited" and e.Owner == "apache" %}
+                        <a href="/monitor/release/{{ e.ClusterId }}.{{ e.ProcId }}">Release</a>
+                    {% endif %}
+                    {% if e.ExitCode == None and e.JobState == "Running" and e.Owner == "apache" %}
+                        <a href="/monitor/hold/{{ e.ClusterId }}.{{ e.ProcId }}">Hold</a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

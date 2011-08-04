@@ -29,12 +29,14 @@
 
 # Create your views here.
 from django.template import Context, loader
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 import pydot
 import grapher
 
 from eunomia import blackboard
+from eunomia import condorutils
 
 
 # import ctypes
@@ -111,6 +113,29 @@ def entry_index(request, entry_id):
     # Render the template and exit.
     c = Context({'entry': entry, })
     return(HttpResponse(t.render(c)))
+
+
+def hold_job(request, job_id):
+    """
+    Send the gven job_id a condor_hold. Then redirect to the main index page.
+    """
+    # Call condor_hold job_id
+    err = condorutils.condor_hold(job_id)
+    
+    # Redirect to the main index.
+    return(HttpResponseRedirect(reverse('monitor.views.index')))
+
+
+def release_job(request, job_id):
+    """
+    Send the gven job_id a condor_release. Then redirect to the main index page.
+    """
+    # Call condor_release job_id
+    err = condorutils.condor_release(job_id)
+    
+    # Redirect to the main index.
+    return(HttpResponseRedirect(reverse('monitor.views.index')))
+
     
 
 def request_index(request, request_id):
@@ -132,9 +157,15 @@ def request_index(request, request_id):
     for stage in stages:
         nodeId = '%d.%d' % (stage.ClusterId, stage.ProcId)
         
+        # Remember that if a condor job is on hold, it will have an ExitCode =
+        # None and a JobState = Exited.
         if(stage.JobState != 'Exited'):
             nodeLabel = '%s - %s' % (stage.DAGNodeName,
                                      stage.JobState)
+        elif(stage.ExitCode == None):
+            # The corresponding condor job was put on hold.
+            nodeLabel = '%s - %s' % (stage.DAGNodeName,
+                                     'On Hold')
         else:
             nodeLabel = '%s - %s (%d)' % (stage.DAGNodeName,
                                           stage.JobState,
