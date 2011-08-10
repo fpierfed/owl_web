@@ -42,16 +42,16 @@ from django.http import HttpResponse
 REPO_ROOT = '/jwdmsdevvm1/data1/owl_scratch/repository/raw'
 EXE = '/jwst/bin/process_dataset.py'
 
-# Format: ({'name': intrument+mode, 'datasets': (dataset1, dataset2, ...)}, )
 dataset001 = {'name': 'dataset_001', 
               'exposures': ('raw-000001', 'raw-000002', 'raw-000003', 'raw-000004')}
 dataset002 = {'name': 'dataset_002', 
               'exposures': ('raw-000001', 'raw-000002')}
 INSTRUMENTS = ({'name': 'instrument1/modeA', 
+                'link_name': 'Regular BCW',
                 'datasets': (dataset001, dataset002)}, 
                {'name': 'instrument1/modeD', 
+                'link_name': 'iRODS BCW',
                 'datasets': (dataset001, dataset002)}, )
-
 
 
 

@@ -6,11 +6,11 @@
 
 {% if instruments %}
     <center>
-        <h1>Available instruments, modes and datasets</h1>
+        <h1>Available Workflows</h1>
         <br />
-        Instrument1/modeA uses Condor file transfer
+        Regular BCW uses Condor file transfer
         <br />
-        Instrument1/modeD uses iRODS
+        iRODS BCW fetches datasets from iRODS
         <br />
         <br />
         <table border="1">
@@ -23,7 +23,7 @@
             <tr>
                 <td>
                     <a href="{{ instrument.name }}/">
-                        {{ instrument.name }}
+                        {{ instrument.link_name }}
                     </a>
                 </td>
                 <td>
@@ -36,5 +36,13 @@
     <h1>No intrument/mode defined.</h1>
 {% endif %}
 
+
+<br />
+<br />
+<center>
+    <a href="/control/">Submit Jobs</a> | 
+    <a href="/monitor/">Monitor Jobs</a> | 
+    <a href="/inventory/">Machine Inventory</a>
+</center>
 </body>
 </html>
