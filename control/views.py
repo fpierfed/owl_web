@@ -32,6 +32,7 @@ import subprocess
 from django.template import Context, loader
 from django.http import HttpResponse
 
+from eunomia.utils import which
 
 
 
@@ -39,8 +40,8 @@ from django.http import HttpResponse
 
 # Constants
 # TODO: We should be getting these from, say a DB.
-REPO_ROOT = '/jwdmsdevvm1/data1/owl_scratch/repository/raw'
-EXE = '/jwst/bin/process_dataset.py'
+REPO_ROOT = '/data2/jwst/repository/raw'
+EXE = which('process_dataset.py')
 
 dataset001 = {'name': 'dataset_001', 
               'exposures': ('raw-000001', 'raw-000002', 'raw-000003', 'raw-000004')}
@@ -101,7 +102,7 @@ def process_index(request, instrument, mode, dataset, exposure,
     # Special handling for modeD which uses iRODS. This is a hack :-(
     if(str(mode) == 'modeD'):
         repo_root = repo_root.replace('/jwdmsdevvm1/data1/', '', 1)
-        exe = '/jwst/bin/process_idataset.py'
+        exe = which('process_idataset.py')
     
     name = str(instrument) + '/' + str(mode)
     
