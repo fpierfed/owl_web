@@ -52,6 +52,33 @@ from eunomia import condorutils
 
 
 
+def generic_index(request, **kwds):
+    """
+    Generic interface to the various index views allowing us to specify optional 
+    constraints to blackboard entry selection.
+    
+    Valid constraints are dataset=... and owner=... (apart from no constraint).
+    """
+    valid_keys = set(('dataset', 'owner'))
+    keys = set(kwds.keys())
+    assert(keys.issubset(valid_keys))
+    
+    # Load the template.
+    t = loader.get_template('monitor/index.html')
+    
+    # Get the bb entries.
+    entries = blackboard.listEntries(**kwds)
+    
+    # Decorate them with extra attributes.
+    for e in entries:
+        submit_host = e.GlobalJobId[:e.GlobalJobId.find('#')]
+        e.RequestId = '%s@%s' % (str(e.DAGManJobId), submit_host)
+    
+    # Render the template and exit.
+    c = Context({'entries': entries, })
+    return(HttpResponse(t.render(c)))
+
+
 def index(request):
     """
     Main entry point for the monitor web app. Display a list of 'OSF` blackboard
@@ -59,45 +86,21 @@ def index(request):
         dataset | user | datetime | Stage1 Status | Stage2 Status | ... 
         ...
     """
-    # Load the template.
-    t = loader.get_template('monitor/index.html')
-    
-    # Get the bb entries.
-    entries = blackboard.listEntries()
-    
-    # Render the template and exit.
-    c = Context({'entries': entries, })
-    return(HttpResponse(t.render(c)))
+    return(generic_index(request))
 
 
 def owner_index(request, owner_name):
     """
     List all entries associated with `owner`.
     """
-    # Load the template.
-    t = loader.get_template('monitor/index.html')
-    
-    # Get the bb entries.
-    entries = blackboard.listEntries(owner=owner_name)
-    
-    # Render the template and exit.
-    c = Context({'entries': entries, })
-    return(HttpResponse(t.render(c)))
+    return(generic_index(request, owner=owner_name))
 
 
 def dataset_index(request, dataset):
     """
     List all entries associated with `dataset`.
     """
-    # Load the template.
-    t = loader.get_template('monitor/index.html')
-    
-    # Get the bb entries.
-    entries = blackboard.listEntries(dataset=dataset)
-    
-    # Render the template and exit.
-    c = Context({'entries': entries, })
-    return(HttpResponse(t.render(c)))
+    return(generic_index(request, dataset=dataset))
 
 
 def entry_index(request, entry_id):
@@ -140,14 +143,20 @@ def release_job(request, job_id):
 
 def request_index(request, request_id):
     """
-    Detail page on a specific request (i.e. DAGManJobId) by creating an SVG 
-    representation of the executing DAG.
+    Detail page on a specific request (i.e. DAGManJobId@<submit host>) by 
+    creating an SVG representation of the executing DAG.
     """
     # Load the template.
     t = loader.get_template('monitor/request_svg.html')
     
     # Get the bb entries.
-    (dataset, user, requestId, stages) = blackboard.getOSFEntry(request_id)
+    dagManJobId, host = request_id.split('@', 1)
+    (dataset, user, requestId, stages) = blackboard.getOSFEntry(dagManJobId)
+    
+    # Filter out all the spurious ones. 
+    # FIXME: Maybe do this a bit better, huh?
+    hh = host + '#'
+    stages = [s for s in stages if s.GlobalJobId.startswith(hh)]
     
     # Create the DOT graph.
     dot = pydot.Dot(type='digraph')
