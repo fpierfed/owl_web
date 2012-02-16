@@ -50,7 +50,7 @@ urlpatterns = patterns('',
     (r'^monitor/user/(?P<owner_name>\S+)/$', 'monitor.views.owner_index'),
     (r'^monitor/dataset/(?P<dataset>\S+)/$', 'monitor.views.dataset_index'),
     (r'^monitor/entry/(?P<entry_id>\S+)/$', 'monitor.views.entry_index'),
-    (r'^monitor/request/(?P<request_id>\d+@[a-zA-Z\.\-]+)/$', 'monitor.views.request_index'),
+    (r'^monitor/request/(?P<request_id>\d+@[a-zA-Z0-9\.\-]+)/$', 'monitor.views.request_index'),
     (r'^monitor/hold/(?P<job_id>[0-9\.]+)/$', 'monitor.views.hold_job'),
     (r'^monitor/release/(?P<job_id>[0-9\.]+)/$', 'monitor.views.release_job'),
     
