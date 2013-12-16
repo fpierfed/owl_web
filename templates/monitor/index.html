@@ -21,13 +21,17 @@
                 <td><b>Detail</b></td>
                 <td><b>Hold/Release</b></td>
             </tr>
-        
+
         {% for e in entries %}
             <tr>
                 <td>
+                    {% if e.DAGManJobId %}
                     <a href="/monitor/request/{{ e.RequestId }}/">
                         {{ e.DAGManJobId }}
                     </a>
+                    {% else %}
+                    N/A
+                    {% endif %}
                 </td>
                 <td>
                     <a href="/monitor/dataset/{{ e.Dataset }}">
@@ -91,8 +95,8 @@
 <br />
 <br />
 <center>
-    <a href="/control/">Submit Jobs</a> | 
-    <a href="/monitor/">Monitor Jobs</a> | 
+    <a href="/control/">Submit Jobs</a> |
+    <a href="/monitor/">Monitor Jobs</a> |
     <a href="/inventory/">Machine Inventory</a>
 </center>
 </body>
