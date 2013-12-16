@@ -29,7 +29,7 @@
 from django.template import Context, loader
 from django.http import HttpResponse
 
-from eunomia import condorutils
+from owl import condorutils
 
 
 

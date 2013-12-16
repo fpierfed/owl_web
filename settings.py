@@ -1,20 +1,20 @@
 # Copyright (C) 2010 Association of Universities for Research in Astronomy(AURA)
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# 
+#
 #     1. Redistributions of source code must retain the above copyright
 #       notice, this list of conditions and the following disclaimer.
-# 
+#
 #     2. Redistributions in binary form must reproduce the above
 #       copyright notice, this list of conditions and the following
 #       disclaimer in the documentation and/or other materials provided
 #       with the distribution.
-# 
+#
 #     3. The name of AURA and its representatives may not be used to
 #       endorse or promote products derived from this software without
 #       specific prior written permission.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY AURA ``AS IS'' AND ANY EXPRESS OR IMPLIED
 # WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 # MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -28,7 +28,7 @@
 # DAMAGE.
 import os.path
 
-# Django settings for eunomia_web project.
+# Django settings for owl_web project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -43,14 +43,12 @@ pwd_file = os.path.join(os.path.dirname(__file__), 'database.pwd')
 PASSWD = open(pwd_file).readline().strip()
 DATABASES = {
     'default': {
-        'ENGINE': 'sql_server.pyodbc', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'workflowDB',          # Or path to database file if using sqlite3.
-        'USER': 'workflow',            # Not used with sqlite3.
-        'PASSWORD': PASSWD,            # Not used with sqlite3.
-        'OPTIONS': {
-            'driver': 'SQL Server',
-            'dsn': 'jwdmsdevdbvm1'
-        }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'owl',
+        'USER': 'condor',
+        'PASSWORD': PASSWD,
+        'HOST': 'rddor-rdpierfefr.nihs.ch.nestle.com',
+        'OPTIONS': {}
     }
 }
 
@@ -129,14 +127,14 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'eunomia_web.urls'
+ROOT_URLCONF = 'owl_web.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    
-    '/jwst/eunomia_web/templates',
+
+    '/sonas/Bioinformatics_home/rdpierfefr/owl_web/templates',
 )
 
 INSTALLED_APPS = (
@@ -150,7 +148,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    
+
     'monitor',
     'main',
     'control',

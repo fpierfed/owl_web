@@ -32,7 +32,7 @@ import subprocess
 from django.template import Context, loader
 from django.http import HttpResponse
 
-from eunomia.utils import which
+from owl.utils import which
 
 
 
